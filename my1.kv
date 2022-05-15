@@ -1,0 +1,961 @@
+<CreateAccountWindow>:
+     name: "create"
+
+     namee: namee
+     email: email
+     password: passw
+
+     FloatLayout:
+          cols:1
+
+          FloatLayout:
+
+               size: root.width, root.height/2
+
+               Label:
+                    text: "Create an Account"
+                    size_hint: 0.8, 0.2
+                    pos_hint: {"x" : 0.1, "top" : 1}
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+               Label:
+                    size_hint: 0.5, 0.12
+                    pos_hint: {"x" : 0, "top" : 0.8}
+                    text: "Name: "
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+               TextInput:
+                    pos_hint: {"x":0.5, "top":0.8}
+                    size_hint: 0.4, 0.12
+                    id: namee
+                    multiline: False
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+               Label:
+                    size_hint: 0.5, 0.12
+                    pos_hint: {"x" : 0, "top" : 0.8-0.12}
+                    text: "Email: "
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+               TextInput:
+                    pos_hint: {"x":0.5, "top":0.8-0.12}
+                    size_hint: 0.4, 0.12
+                    id: email
+                    multiline: False
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+               Label:
+                    size_hint: 0.5, 0.12
+                    pos_hint: {"x" : 0, "top" : 0.8-0.13*2}
+                    text: "Password: "
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+               TextInput:
+                    pos_hint: {"x":0.5, "top":0.8-0.12*2}
+                    size_hint: 0.4, 0.12
+                    id: passw
+                    multiline: False
+                    password: True
+                    font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint: {"x":0.3, "y":0.25}
+               size_hint: 0.4, 0.1
+               font_size: (root.width**2 + root.height**2) / 17**4
+               text: "Already have an Account? Log In"
+               on_release:
+                    root.manager.transition.direction = "left"
+                    root.login()
+
+          Button:
+               pos_hint: {"x":0.3, "y":0.15}
+               size_hint: 0.4, 0.1
+               font_size: (root.width**2 + root.height**2) / 17**4
+               text: "Sumbit"
+               on_release:
+                    root.manager.transition.direction = "left"
+                    root.sumbit()
+
+
+<LoginWindow>:
+     name: "login"
+
+     email: email
+     password: password
+
+     FloatLayout:
+
+          Label:
+               text: "Email: "
+               font_size: (root.width**2 + root.height**2) / 13**4
+               pos_hint: {"x": 0.1, "top": 0.9}
+               size_hint: 0.35, 0.15
+
+          TextInput:
+               id:email
+               font_size: (root.width**2 + root.height**2) / 13**4
+               multiline: False
+               pos_hint: {"x": 0.45, "top":0.9}
+               size_hint: 0.4, 0.15
+
+          Label:
+               text: "Password: "
+               font_size: (root.width**2 + root.height**2) / 13**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.35, 0.15
+
+          TextInput:
+               id: password
+               font_size: (root.width**2 + root.height**2) / 13**4
+               multiline: False
+               password: True
+               pos_hint: {"x": 0.45, "top": 0.7}
+               size_hint: 0.4, 0.15
+
+          Button:
+               pos_hint: {"x":0.2, "y":0.05}
+               size_hint: 0.6, 0.2
+               font_size: (root.width**2 + root.height**2) / 13**4
+               text: "Login"
+               on_release:
+                    root.manager.transition.direction = "up"
+                    root.loginBtn()
+
+          Button:
+               pos_hint: {"x":0.3, "y":0.3}
+               size_hint: 0.4, 0.1
+               font_size: (root.width**2 + root.height**2) / 17**4
+               text: "Don't have an Account? Create one"
+               on_release:
+                    root.manager.transition.direction = "right"
+                    root.createBth()
+
+
+<MainWindow>
+     canvas.before:
+          Color:
+               rgb: .13, .75, .75, 0
+          Rectangle:
+               size: self.size
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/airplane.jpg'
+               size: self.size
+               pos_hint: {'center_x':.5, 'center_y': .5}
+
+     FloatLayout:
+          Label:
+               text: "Добро пожаловать! "
+               font_size: (root.width**2 + root.height**2) / 13**4
+               pos_hint: {"x": 0.1, "top": 0.9}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Здесь вы можете приобрести \nпутевку в любую точку мира!"
+               font_size: (root.width**2 + root.height**2) / 13**4
+               pos_hint: {"x": 0.1, "top":0.8}
+               size_hint: 0.8, 0.2
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Exit"
+               on_release:
+                    app.root.current = "login"
+                    root.manager.transition.direction = "down"
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.6, "y": 0.0}
+               size_hint: 0.2, 0.1
+               text: "Reviews"
+               on_release: root.manager.current = "reviews"
+
+          Button:
+               pos_hint:{"x": 0.8, "y": 0.0}
+               size_hint: 0.2, 0.1
+               text: "About Us"
+               on_release: root.manager.current = "aboutUs"
+
+
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "italy"
+
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "france"
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "turkey"
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "egypt"
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "spain"
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "czech"
+
+<AboutUs>:
+     canvas.before:
+          Color:
+               rgb: .13, .75, .75, 0
+          Rectangle:
+               size: self.size
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/airplane.jpg'
+               size: self.size
+               pos_hint: {'center_x':.5, 'center_y': .5}
+
+     FloatLayout:
+          Label:
+
+               color: .39, .29, .89, .9
+               pos_hint: {"x": 0.1, "top":0.9}
+               size_hint: 0.8, 0.2
+               text: 'Продажа билетов, самые лучшие цены'
+
+
+          Button:
+               text: 'Меню'
+               size_hint: 1, .05
+               on_press:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "down"
+
+<Reviews>
+     canvas.before:
+          Color:
+               rgb: .13, .75, .75, 0
+          Rectangle:
+               size: self.size
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/airplane.jpg'
+               size: self.size
+               pos_hint: {'center_x':.5, 'center_y': .5}
+     FloatLayout:
+
+          Label:
+               color: .39, .29, .89, .9
+               pos_hint: {"x": 0.1, "top":0.9}
+               size_hint: 0.8, 0.2
+               text: 'Ребята лучшие и знают свою работу'
+
+
+          Button:
+               text: 'Меню'
+               size_hint: 1, .05
+               on_press:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "down"
+
+
+<Italy>
+     canvas.before:
+          Color:
+               rgb: .4, 0, .88, 0
+          Rectangle:
+               size: self.size
+
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/italy.jpg'
+               size_hint: .7, .6
+               pos_hint: {'center_x':.5, 'center_y': .8}
+
+     FloatLayout:
+
+          Label:
+               text: "Незабываемое путешествия в Италию , успейте приобрести билет!"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Описание: ...."
+               font_size: (root.width**2 + root.height**2) / 14**4
+               pos_hint: {"x": 0.0, "top": 0.4}
+               size_hint: 0.4, 0.2
+
+          Label:
+               text: "купить билет(ы) в количестве:"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.6}
+               size_hint: 0.3, 0.2
+
+          TextInput:
+               pos_hint: {"x":0.1, "top":0.45}
+               size_hint: 0.2, 0.05
+               id: buy
+               multiline: False
+               font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint:{"x": 0.3, "y": 0.4}
+               size_hint: 0.2, 0.05
+               text: "buy"
+               on_release:app.root.current = "completion"
+
+     FloatLayout:
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Back"
+               on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: dropdown1.select('Италия')
+
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "france"
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "turkey"
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "egypt"
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "spain"
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "czech"
+
+<France>
+     canvas.before:
+          Color:
+               rgb: .24, .88, .67, 0
+          Rectangle:
+               size: self.size
+
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/france.jpg'
+               size_hint: .7, .6
+               pos_hint: {'center_x':.5, 'center_y': .8}
+
+     FloatLayout:
+
+          Label:
+               text: "Незабываемое путешествия во Францию , успейте приобрести билет!"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Описание: ...."
+               font_size: (root.width**2 + root.height**2) / 14**4
+               pos_hint: {"x": 0.0, "top": 0.4}
+               size_hint: 0.4, 0.2
+
+          Label:
+               text: "купить билет(ы) в количестве:"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.6}
+               size_hint: 0.3, 0.2
+
+          TextInput:
+               pos_hint: {"x":0.1, "top":0.45}
+               size_hint: 0.2, 0.05
+               id: buy
+               multiline: False
+               font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint:{"x": 0.3, "y": 0.4}
+               size_hint: 0.2, 0.05
+               text: "buy"
+               on_release:app.root.current = "completion"
+
+
+
+     FloatLayout:
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Back"
+               on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "italy"
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: dropdown1.select('Франция')
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "turkey"
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "egypt"
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "spain"
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "czech"
+
+
+<Turkey>
+     canvas.before:
+          Color:
+               rgb: .82, .88, .10, 0
+          Rectangle:
+               size: self.size
+
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/turkey.jpg'
+               size_hint: .7, .6
+               pos_hint: {'center_x':.5, 'center_y': .8}
+
+     FloatLayout:
+
+          Label:
+               text: "Незабываемое путешествия в Турцию , успейте приобрести билет!"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Описание: ...."
+               font_size: (root.width**2 + root.height**2) / 14**4
+               pos_hint: {"x": 0.0, "top": 0.4}
+               size_hint: 0.4, 0.2
+
+          Label:
+               text: "купить билет(ы) в количестве:"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.6}
+               size_hint: 0.3, 0.2
+
+          TextInput:
+               pos_hint: {"x":0.1, "top":0.45}
+               size_hint: 0.2, 0.05
+               id: buy
+               multiline: False
+               font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint:{"x": 0.3, "y": 0.4}
+               size_hint: 0.2, 0.05
+               text: "buy"
+               on_release:app.root.current = "completion"
+
+
+
+     FloatLayout:
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Back"
+               on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "italy"
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "france"
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: dropdown1.select('Турция')
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "egypt"
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "spain"
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "czech"
+
+
+<Egypt>
+     canvas.before:
+          Color:
+               rgb: .88, .62, .33, 0
+          Rectangle:
+               size: self.size
+
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/egypt.jpg'
+               size_hint: .7, .6
+               pos_hint: {'center_x':.5, 'center_y': .8}
+
+     FloatLayout:
+
+          Label:
+               text: "Незабываемое путешествия в Египет , успейте приобрести билет!"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Описание: ...."
+               font_size: (root.width**2 + root.height**2) / 14**4
+               pos_hint: {"x": 0.0, "top": 0.4}
+               size_hint: 0.4, 0.2
+
+          Label:
+               text: "купить билет(ы) в количестве:"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.6}
+               size_hint: 0.3, 0.2
+
+          TextInput:
+               pos_hint: {"x":0.1, "top":0.45}
+               size_hint: 0.2, 0.05
+               id: buy
+               multiline: False
+               font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint:{"x": 0.3, "y": 0.4}
+               size_hint: 0.2, 0.05
+               text: "buy"
+               on_release:app.root.current = "completion"
+
+
+
+     FloatLayout:
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Back"
+               on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "italy"
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "france"
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "turkey"
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: dropdown1.select('Египет')
+
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "spain"
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "czech"
+
+
+<Spain>
+     canvas.before:
+          Color:
+               rgb: .32, .88, .24, 0
+          Rectangle:
+               size: self.size
+
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/spain.jpg'
+               size_hint: .7, .6
+               pos_hint: {'center_x':.5, 'center_y': .8}
+
+     FloatLayout:
+
+          Label:
+               text: "Незабываемое путешествия в Испанию , успейте приобрести билет!"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Описание: ...."
+               font_size: (root.width**2 + root.height**2) / 14**4
+               pos_hint: {"x": 0.0, "top": 0.4}
+               size_hint: 0.4, 0.2
+
+          Label:
+               text: "купить билет(ы) в количестве:"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.6}
+               size_hint: 0.3, 0.2
+
+          TextInput:
+               pos_hint: {"x":0.1, "top":0.45}
+               size_hint: 0.2, 0.05
+               id: buy
+               multiline: False
+               font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint:{"x": 0.3, "y": 0.4}
+               size_hint: 0.2, 0.05
+               text: "buy"
+               on_release:app.root.current = "completion"
+
+
+
+     FloatLayout:
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Back"
+               on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "italy"
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "france"
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "turkey"
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "egypt"
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: dropdown1.select('Испания')
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "czech"
+
+
+<Czech>
+     canvas.before:
+          Color:
+               rgb: .88, .7, .5, 0
+          Rectangle:
+               size: self.size
+
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/czech.jpg'
+               size_hint: .7, .6
+               pos_hint: {'center_x':.5, 'center_y': .8}
+
+     FloatLayout:
+
+          Label:
+               text: "Незабываемое путешествия в Чехию , успейте приобрести билет!"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.7}
+               size_hint: 0.8, 0.2
+
+          Label:
+               text: "Описание: ...."
+               font_size: (root.width**2 + root.height**2) / 14**4
+               pos_hint: {"x": 0.0, "top": 0.4}
+               size_hint: 0.4, 0.2
+
+          Label:
+               text: "купить билет(ы) в количестве:"
+               font_size: (root.width**2 + root.height**2) / 16**4
+               pos_hint: {"x": 0.1, "top": 0.6}
+               size_hint: 0.3, 0.2
+
+          TextInput:
+               pos_hint: {"x":0.1, "top":0.45}
+               size_hint: 0.2, 0.05
+               id: buy
+               multiline: False
+               font_size: (root.width**2 + root.height**2) / 14**4
+
+          Button:
+               pos_hint:{"x": 0.3, "y": 0.4}
+               size_hint: 0.2, 0.05
+               text: "buy"
+               on_release:app.root.current = "completion"
+
+
+
+     FloatLayout:
+
+          Button:
+               pos_hint:{"x": 0.0, "y": 0.9}
+               size_hint: 0.1, 0.1
+               text: "Back"
+               on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+
+          Button:
+               id: btn1
+               pos_hint:{"x": 0.1, "y": 0.9}
+               size_hint: 0.9, 0.1
+               text: "Countries"
+               on_release:on_release: dropdown1.open(self)
+
+          Widget:
+               on_parent: dropdown1.dismiss()
+
+          DropDown:
+
+               id: dropdown1
+               on_select: btn1.text = '{}'.format(args[1])
+
+               Button:
+                    text: 'Италия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "italy"
+
+               Button:
+                    text: 'Франция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "france"
+
+               Button:
+                    text: 'Турция'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "turkey"
+
+               Button:
+                    text: 'Египет'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "egypt"
+               Button:
+                    text: 'Испания'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: app.root.current = "spain"
+               Button:
+                    text: 'Чехия'
+                    size_hint_y: None
+                    height: '48dp'
+                    on_release: dropdown1.select('Чехия')
+
+<Completion>
+     canvas.before:
+          Color:
+               rgb: .13, .75, .75, 0
+          Rectangle:
+               size: self.size
+     FloatLayout:
+          AsyncImage:
+               source: 'temp/airplane.jpg'
+               size: self.size
+               pos_hint: {'center_x':.5, 'center_y': .5}
+
+     FloatLayout:
+
+          Label:
+               color: .39, .29, .89, .9
+               pos_hint: {"x": 0.1, "top":0.9}
+               size_hint: 0.8, 0.2
+               text: 'Ваша покупка оформлена! \nСпасибо что выбрали нас! \nЖдем вас в следующий раз =)'
+
+
+          Button:
+               text: 'Меню'
+               size_hint: 1, .05
+               on_press:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "down"
+
+
